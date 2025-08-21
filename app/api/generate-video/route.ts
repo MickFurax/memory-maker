@@ -16,7 +16,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const input: any = {
+    const input: {
+      prompt: string;
+      cfg: number;
+      model: string;
+      negative_prompt: string;
+      aspect_ratio: string;
+      video_length: number;
+      steps: number;
+      target_size: number;
+      image?: string;
+    } = {
       prompt,
       cfg: 15,
       model: "0.9.1",

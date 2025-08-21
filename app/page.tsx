@@ -27,7 +27,13 @@ export default function Home() {
     const saved = localStorage.getItem('memory-maker-videos');
     if (saved) {
       const parsed = JSON.parse(saved);
-      setSavedMemories(parsed.map((m: any) => ({
+      setSavedMemories(parsed.map((m: {
+        id: string;
+        videoUrl: string;
+        prompt: string;
+        imageUrl: string;
+        createdAt: string | Date;
+      }) => ({
         ...m,
         createdAt: new Date(m.createdAt)
       })));
@@ -328,19 +334,19 @@ export default function Home() {
                             onClick={() => setStoryPrompt("My daughter took her first wobbly steps across the living room, arms outstretched, with the biggest smile on her face")}
                             className="block w-full text-left p-1.5 rounded hover:bg-emerald-100 dark:hover:bg-emerald-800/30 transition-colors"
                           >
-                            "First steps across the living room..."
+                            &ldquo;First steps across the living room...&rdquo;
                           </button>
                           <button 
                             onClick={() => setStoryPrompt("The birthday candles flickered as everyone sang happy birthday, and you could see the joy and surprise in their eyes")}
                             className="block w-full text-left p-1.5 rounded hover:bg-emerald-100 dark:hover:bg-emerald-800/30 transition-colors"
                           >
-                            "Birthday candles flickering as everyone sang..."
+                            &ldquo;Birthday candles flickering as everyone sang...&rdquo;
                           </button>
                           <button 
                             onClick={() => setStoryPrompt("The waves crashed over us as we laughed and played in the ocean, feeling completely carefree and happy")}
                             className="block w-full text-left p-1.5 rounded hover:bg-emerald-100 dark:hover:bg-emerald-800/30 transition-colors"
                           >
-                            "Waves crashing as we played in the ocean..."
+                            &ldquo;Waves crashing as we played in the ocean...&rdquo;
                           </button>
                         </div>
                       </div>
