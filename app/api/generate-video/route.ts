@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Replicate from 'replicate';
+import { fal } from "@fal-ai/client";
 
-const replicate = new Replicate({
-  auth: process.env.REPLICATE_API_TOKEN,
+// Configure fal.ai client
+fal.config({
+  credentials: process.env.FAL_KEY,
 });
 
 export async function POST(request: NextRequest) {
   try {
-    const { prompt, image, aspectRatio, videoLength, steps } = await request.json();
+    const { prompt, image, aspectRatio, videoLength } = await request.json();
 
     if (!prompt) {
       return NextResponse.json(
@@ -16,37 +17,51 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const input: {
-      prompt: string;
-      cfg: number;
-      model: string;
-      negative_prompt: string;
-      aspect_ratio: string;
-      video_length: number;
-      steps: number;
-      target_size: number;
-      image?: string;
-    } = {
-      prompt,
-      cfg: 15,
-      model: "0.9.1",
-      negative_prompt: "low quality, worst quality, deformed, distorted",
-      aspect_ratio: aspectRatio || '16:9',
-      video_length: videoLength || 97,
-      steps: steps || 30,
-      target_size: 640,
-    };
-
-    // Add image if provided (for image-to-video)
-    if (image) {
-      input.image = image;
+    if (!image) {
+      return NextResponse.json(
+        { error: 'Image is required' },
+        { status: 400 }
+      );
     }
 
-    const output = await replicate.run('lightricks/ltx-video:8c47da666861d081eeb4d1261853087de23923a268a69b63febdf5dc1dee08e4', {
-      input,
+    // Convert base64 image to blob and upload to fal
+    const base64Data = image.split(',')[1];
+    const imageBuffer = Buffer.from(base64Data, 'base64');
+    const imageBlob = new Blob([imageBuffer]);
+    
+    // Upload image to fal storage
+    const imageUrl = await fal.storage.upload(imageBlob);
+
+    // Map aspect ratio to resolution
+    let resolution = "720p";
+    if (aspectRatio === "9:16") {
+      resolution = "768x1344";
+    } else if (aspectRatio === "1:1") {
+      resolution = "768x768";
+    }
+
+    // Calculate number of frames (videoLength is in frames, default 97 for ~4s at 24fps)
+    const numFrames = videoLength || 121; // Default to 121 frames (~5s at 24fps)
+
+    const result = await fal.subscribe("fal-ai/ltxv-13b-098-distilled/image-to-video", {
+      input: {
+        prompt,
+        image_url: imageUrl,
+        negative_prompt: "low quality, worst quality, deformed, distorted, blurry",
+        aspect_ratio: aspectRatio || "16:9",
+        num_frames: numFrames,
+        frame_rate: 24,
+      },
+      logs: true,
+      onQueueUpdate: (update) => {
+        if (update.status === "IN_PROGRESS") {
+          update.logs.map((log) => log.message).forEach(console.log);
+        }
+      },
     });
 
-    return NextResponse.json({ videoUrl: output[0].url() });
+    console.log("Video URL ", result.data.video);
+    return NextResponse.json({ videoUrl: result.data.video.url });
   } catch (error) {
     console.error('Video generation error:', error);
     return NextResponse.json(

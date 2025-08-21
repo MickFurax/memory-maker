@@ -57,6 +57,19 @@ export default function Home() {
     localStorage.setItem('memory-maker-videos', JSON.stringify(updatedMemories));
   };
 
+  // Remove a single memory
+  const removeMemory = (memoryId: string) => {
+    const updatedMemories = savedMemories.filter(memory => memory.id !== memoryId);
+    setSavedMemories(updatedMemories);
+    localStorage.setItem('memory-maker-videos', JSON.stringify(updatedMemories));
+  };
+
+  // Clear all memories
+  const clearAllMemories = () => {
+    setSavedMemories([]);
+    localStorage.removeItem('memory-maker-videos');
+  };
+
   const handleImageUpload = (file: File) => {
     setSelectedImage(file);
     const reader = new FileReader();
@@ -179,14 +192,25 @@ export default function Home() {
                   <h2 className="text-3xl font-bold text-slate-800 dark:text-white">
                     Your Memory Collection
                   </h2>
-                  <span className="text-slate-600 dark:text-slate-400">
-                    {savedMemories.length} {savedMemories.length === 1 ? 'memory' : 'memories'}
-                  </span>
+                  <div className="flex items-center gap-4">
+                    <span className="text-slate-600 dark:text-slate-400">
+                      {savedMemories.length} {savedMemories.length === 1 ? 'memory' : 'memories'}
+                    </span>
+                    <button
+                      onClick={clearAllMemories}
+                      className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-medium transition-colors text-sm shadow-md flex items-center gap-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                      Clear All
+                    </button>
+                  </div>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {savedMemories.map((memory) => (
-                    <div key={memory.id} className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div key={memory.id} className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow relative group">
                       <div className="aspect-video relative bg-black">
                         <video
                           src={memory.videoUrl}
@@ -199,7 +223,7 @@ export default function Home() {
                             e.currentTarget.currentTime = 0;
                           }}
                         />
-                        <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
                           <button
                             onClick={() => {
                               setGeneratedVideo(memory.videoUrl);
@@ -208,6 +232,15 @@ export default function Home() {
                             className="bg-white/90 hover:bg-white text-slate-800 px-4 py-2 rounded-full font-medium transition-colors"
                           >
                             View Full
+                          </button>
+                          <button
+                            onClick={() => removeMemory(memory.id)}
+                            className="bg-red-500/90 hover:bg-red-500 text-white px-4 py-2 rounded-full font-medium transition-colors flex items-center gap-2"
+                          >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                            Remove
                           </button>
                         </div>
                       </div>
@@ -343,10 +376,10 @@ export default function Home() {
                             &ldquo;Birthday candles flickering as everyone sang...&rdquo;
                           </button>
                           <button 
-                            onClick={() => setStoryPrompt("The waves crashed over us as we laughed and played in the ocean, feeling completely carefree and happy")}
+                            onClick={() => setStoryPrompt("The creature from the image starts to move")}
                             className="block w-full text-left p-1.5 rounded hover:bg-emerald-100 dark:hover:bg-emerald-800/30 transition-colors"
                           >
-                            &ldquo;Waves crashing as we played in the ocean...&rdquo;
+                            &ldquo;The creature from the image starts to move...&rdquo;
                           </button>
                         </div>
                       </div>

@@ -6,7 +6,7 @@ Transform your cherished photos into living memories using AI-powered video gene
 
 - **📸 Photo Upload** - Drag & drop or click to upload your cherished photos
 - **📝 Story Prompts** - Describe what happened next in your memory with helpful examples
-- **🎥 AI Video Generation** - Powered by Lightricks LTX-Video model for high-quality 24fps videos
+- **🎥 AI Video Generation** - Powered by fal.ai's LTXV model for high-quality 24fps videos
 - **⚙️ Customization** - Choose aspect ratio (16:9, 9:16, 1:1) and video duration (2-8 seconds)
 - **🎨 Memory Gallery** - Save and browse all your generated memory videos
 - **💾 Auto-Save** - Your memories are automatically saved locally
@@ -17,7 +17,7 @@ Transform your cherished photos into living memories using AI-powered video gene
 
 - **Frontend**: Next.js 15, React 19, TypeScript
 - **Styling**: Tailwind CSS with custom components
-- **AI Model**: Lightricks LTX-Video via Replicate API
+- **AI Model**: fal.ai LTXV 13B model
 - **Storage**: Local browser storage for memory persistence
 - **Icons**: Heroicons SVG icons
 
@@ -26,7 +26,7 @@ Transform your cherished photos into living memories using AI-powered video gene
 ### Prerequisites
 
 - Node.js 18+ installed on your machine
-- A Replicate API account and token
+- A fal.ai API account and token
 
 ### 1. Clone the Repository
 
@@ -52,14 +52,14 @@ pnpm install
 cp .env.example .env.local
 ```
 
-2. Get your Replicate API token:
-   - Sign up at [Replicate.com](https://replicate.com)
-   - Go to your account settings
-   - Generate an API token
+2. Get your fal.ai API token:
+   - Sign up at [fal.ai](https://fal.ai)
+   - Go to your dashboard
+   - Generate an API key
 
 3. Add your API token to `.env.local`:
 ```env
-REPLICATE_API_TOKEN=r8_your_token_here
+FAL_KEY=your_fal_api_key_here
 NEXT_PUBLIC_APP_NAME=Memory Maker
 ```
 
@@ -140,7 +140,7 @@ ai-video/
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `REPLICATE_API_TOKEN` | Your Replicate API token | ✅ |
+| `FAL_KEY` | Your fal.ai API key | ✅ |
 | `NEXT_PUBLIC_APP_NAME` | App name (default: "Memory Maker") | ❌ |
 
 
@@ -150,8 +150,8 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 🙏 Credits
 
-- **AI Model**: [Lightricks LTX-Video](https://github.com/Lightricks/LTX-Video)
-- **Platform**: [Replicate](https://replicate.com)
+- **AI Model**: [LTXV 13B](https://github.com/Lightricks/LTX-Video)
+- **Platform**: [fal.ai](https://fal.ai)
 - **Framework**: [Next.js](https://nextjs.org)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com)
 
