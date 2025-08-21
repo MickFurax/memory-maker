@@ -635,7 +635,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-6">
           <div className="text-center text-slate-600 dark:text-slate-400">
             <p className="text-sm">
-              Made with ❤️ by <span className="font-medium text-gray-900 dark:text-white">unicodeveloper</span> • Powered by <span className="font-medium text-emerald-600 dark:text-emerald-400">LTXV</span>
+              Made with ❤️ by <span className="font-medium text-gray-900 dark:text-white"><a href="https://twitter.com/unicodeveloper">unicodeveloper</a></span> • Powered by <span className="font-medium text-emerald-600 dark:text-emerald-400"><a href="https://github.com/Lightricks/LTX-Video">LTXV</a></span>
             </p>
           </div>
         </div>
