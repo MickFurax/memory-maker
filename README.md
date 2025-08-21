@@ -128,7 +128,7 @@ Open [http://localhost:3001](http://localhost:3001) in your browser to see Memor
 ```
 ai-video/
 ├── app/
-│   ├── api/generate-video/     # Replicate API integration
+│   ├── api/generate-video/     # fal API integration
 │   ├── globals.css             # Global styles
 │   ├── layout.tsx              # Root layout
 │   └── page.tsx                # Main application
