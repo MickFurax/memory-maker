@@ -2,6 +2,8 @@
 
 Transform your cherished photos into living memories using AI-powered video generation. Upload a photo, describe what happened next, and watch your memory come alive!
 
+![Memory Maker](https://pub-1bf330673fe24fad8ce300e6adbe20d7.r2.dev/Screenshot%202025-08-21%20at%2016.13.27.png)
+
 ## 🌟 Features
 
 - **📸 Photo Upload** - Drag & drop or click to upload your cherished photos
